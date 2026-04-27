@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const skills = [
+  { category: 'Frontend', items: ['React', 'Vue', 'Angular', 'Astro', 'Next.js', 'TypeScript', 'Tailwind CSS'] },
+  { category: 'Backend', items: ['Node.js', 'FastAPI', 'NestJS', 'Express', 'PostgreSQL', 'MongoDB', 'Redis'] },
+  { category: 'DevOps & Cloud', items: ['Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'AWS', 'Azure', 'GCP'] },
+  { category: 'Tools', items: ['Git', 'Postman', 'Grafana', 'Prometheus', 'Datadog', 'Helm', 'ArgoCD'] },
+];
+
+const stats = [
+  { value: '5+', label: 'Years of Experience' },
+  { value: '8+', label: 'Projects Delivered' },
+  { value: '11', label: 'Service Areas' },
+  { value: '30+', label: 'Happy Clients' },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Learn about FreelanceHub — professional freelancing services with 5+ years of experience in web development, DevOps, cloud, and more."
+>
+  <!-- Header -->
+  <section class="py-20" aria-labelledby="about-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="fade-in">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-600/10 border border-brand-600/20 text-brand-400 text-sm font-medium mb-6">
+            About Me
+          </div>
+          <h1 id="about-heading" class="text-4xl md:text-5xl font-bold text-white mb-6">
+            Turning Complex Problems Into Elegant Solutions
+          </h1>
+          <p class="text-gray-400 text-lg leading-relaxed mb-6">
+            I'm a full-stack software engineer and DevOps specialist with 5+ years of experience delivering production-grade software for startups and enterprises alike.
+          </p>
+          <p class="text-gray-400 leading-relaxed mb-8">
+            My work spans the entire software lifecycle — from architecting scalable APIs and containerizing applications to setting up CI/CD pipelines and migrating legacy systems to the cloud. I care deeply about code quality, developer experience, and shipping software that actually works.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/contact" class="btn-primary">Work With Me</a>
+            <a href="/services" class="btn-secondary">View Services</a>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 gap-6 fade-in">
+          {stats.map(({ value, label }) => (
+            <div class="card text-center">
+              <div class="text-4xl font-bold text-brand-400 mb-2">{value}</div>
+              <div class="text-gray-400 text-sm">{label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="py-20 bg-gray-900/50" aria-labelledby="skills-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 fade-in">
+        <h2 id="skills-heading" class="section-title">Skills & Expertise</h2>
+        <p class="section-subtitle">A broad toolkit built over years of real-world projects.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {skills.map(({ category, items }) => (
+          <div class="card fade-in">
+            <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider text-brand-400">{category}</h3>
+            <div class="flex flex-wrap gap-2">
+              {items.map((item) => (
+                <span class="px-2.5 py-1 rounded-md bg-gray-800 text-gray-300 text-xs border border-gray-700">{item}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-20" aria-labelledby="values-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 fade-in">
+        <h2 id="values-heading" class="section-title">How I Work</h2>
+        <p class="section-subtitle">Principles that guide every project I take on.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          {
+            title: 'Clarity First',
+            desc: 'I start every project by deeply understanding the problem before writing a single line of code. Clear requirements lead to better outcomes.',
+            icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
+          },
+          {
+            title: 'Quality Over Speed',
+            desc: 'I write clean, tested, and documented code. Shortcuts create technical debt — I\'d rather do it right the first time.',
+            icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>`,
+          },
+          {
+            title: 'Continuous Communication',
+            desc: 'You\'ll never be left wondering about progress. I provide regular updates and am always available to answer questions.',
+            icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/></svg>`,
+          },
+        ].map(({ title, desc, icon }) => (
+          <div class="card fade-in">
+            <div class="w-12 h-12 rounded-lg bg-brand-600/20 flex items-center justify-center text-brand-400 mb-4" aria-hidden="true">
+              <Fragment set:html={icon} />
+            </div>
+            <h3 class="text-white font-semibold mb-2">{title}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

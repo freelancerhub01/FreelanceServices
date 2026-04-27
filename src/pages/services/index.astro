@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import { services } from '../../data/services';
+---
+
+<BaseLayout
+  title="Services"
+  description="Explore all 11 professional freelancing services — web development, APIs, DevOps, Docker, Kubernetes, cloud, and more."
+>
+  <!-- Page Header -->
+  <section class="py-20 text-center" aria-labelledby="services-page-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-600/10 border border-brand-600/20 text-brand-400 text-sm font-medium mb-6 fade-in">
+        11 Service Areas
+      </div>
+      <h1 id="services-page-heading" class="section-title text-4xl md:text-5xl fade-in">All Services</h1>
+      <p class="section-subtitle mt-4 fade-in">
+        End-to-end software delivery — from the first line of code to production infrastructure.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="pb-20" aria-label="Services list">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service) => (
+          <div class="fade-in">
+            <ServiceCard
+              title={service.title}
+              description={service.shortDescription}
+              icon={service.icon}
+              href={`/services/${service.slug}`}
+              tags={service.tags.slice(0, 3)}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

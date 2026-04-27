@@ -1,0 +1,65 @@
+---
+interface Props {
+  tagline: string;
+  subtitle: string;
+  primaryCTA?: { label: string; href: string };
+  secondaryCTA?: { label: string; href: string };
+}
+
+const {
+  tagline,
+  subtitle,
+  primaryCTA = { label: 'View Services', href: '/services' },
+  secondaryCTA = { label: 'Get In Touch', href: '/contact' },
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden py-24 md:py-36" aria-labelledby="hero-heading">
+  <!-- Background gradient -->
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-600/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-900/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-600/10 border border-brand-600/20 text-brand-400 text-sm font-medium mb-6 fade-in">
+      <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse" aria-hidden="true"></span>
+      Available for new projects
+    </div>
+
+    <h1 id="hero-heading" class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 fade-in">
+      {tagline}
+    </h1>
+
+    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 fade-in">
+      {subtitle}
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in">
+      <a href={primaryCTA.href} class="btn-primary text-base px-8 py-3.5 w-full sm:w-auto">
+        {primaryCTA.label}
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+      <a href={secondaryCTA.href} class="btn-secondary text-base px-8 py-3.5 w-full sm:w-auto">
+        {secondaryCTA.label}
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 fade-in">
+      {[
+        { value: '5+', label: 'Years Experience' },
+        { value: '8+', label: 'Projects Delivered' },
+        { value: '11', label: 'Service Areas' },
+        { value: '100%', label: 'Client Satisfaction' },
+      ].map(({ value, label }) => (
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-brand-400">{value}</div>
+          <div class="text-sm text-gray-500 mt-1">{label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

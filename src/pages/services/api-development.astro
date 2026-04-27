@@ -1,0 +1,7 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { services } from '../../data/services';
+
+const service = services.find((s) => s.slug === 'api-development')!;
+---
+<ServiceLayout service={service} />
