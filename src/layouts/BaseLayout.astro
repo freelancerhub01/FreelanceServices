@@ -12,12 +12,14 @@ interface Props {
 const {
   title,
   description = 'FreelanceHub — Professional freelancing services including web development, DevOps, cloud, Docker, Kubernetes, and more.',
-  ogImage = '/images/og-default.png',
 } = Astro.props;
 
 const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : Astro.url;
+
+// BASE_URL is '/' locally and '/Freelance/' on GitHub Pages
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!doctype html>
@@ -33,7 +35,6 @@ const canonicalURL = Astro.site
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={ogImage} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -41,7 +42,7 @@ const canonicalURL = Astro.site
     <meta name="twitter:description" content={description} />
 
     <link rel="canonical" href={canonicalURL} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
 
     <title>{title} | FreelanceHub</title>
   </head>

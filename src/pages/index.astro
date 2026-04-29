@@ -4,6 +4,7 @@ import HeroSection from '../components/HeroSection.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import CTASection from '../components/CTASection.astro';
 import { services } from '../data/services';
+import { url } from '../utils/url';
 ---
 
 <BaseLayout
@@ -32,7 +33,7 @@ import { services } from '../data/services';
               title={service.title}
               description={service.shortDescription}
               icon={service.icon}
-              href={`/services/${service.slug}`}
+              href={url(`/services/${service.slug}`)}
               tags={service.tags.slice(0, 3)}
             />
           </div>
@@ -40,7 +41,7 @@ import { services } from '../data/services';
       </div>
 
       <div class="text-center mt-10 fade-in">
-        <a href="/services" class="btn-secondary">
+        <a href={url('/services')} class="btn-secondary">
           View All Services
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

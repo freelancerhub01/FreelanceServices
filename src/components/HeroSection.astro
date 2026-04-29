@@ -1,4 +1,6 @@
 ---
+import { url } from '../utils/url';
+
 interface Props {
   tagline: string;
   subtitle: string;
@@ -9,8 +11,8 @@ interface Props {
 const {
   tagline,
   subtitle,
-  primaryCTA = { label: 'View Services', href: '/services' },
-  secondaryCTA = { label: 'Get In Touch', href: '/contact' },
+  primaryCTA = { label: 'View Services', href: url('/services') },
+  secondaryCTA = { label: 'Get In Touch', href: url('/contact') },
 } = Astro.props;
 ---
 
@@ -51,7 +53,7 @@ const {
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 fade-in">
       {[
         { value: '5+', label: 'Years Experience' },
-        { value: '8+', label: 'Projects Delivered' },
+        { value: '80+', label: 'Projects Delivered' },
         { value: '11', label: 'Service Areas' },
         { value: '100%', label: 'Client Satisfaction' },
       ].map(({ value, label }) => (

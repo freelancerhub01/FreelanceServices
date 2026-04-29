@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTASection from '../components/CTASection.astro';
+import { url } from '../utils/url';
 
 const skills = [
   { category: 'Frontend', items: ['React', 'Vue', 'Angular', 'Astro', 'Next.js', 'TypeScript', 'Tailwind CSS'] },
@@ -39,8 +40,8 @@ const stats = [
             My work spans the entire software lifecycle — from architecting scalable APIs and containerizing applications to setting up CI/CD pipelines and migrating legacy systems to the cloud. I care deeply about code quality, developer experience, and shipping software that actually works.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href="/contact" class="btn-primary">Work With Me</a>
-            <a href="/services" class="btn-secondary">View Services</a>
+            <a href={url('/contact')} class="btn-primary">Work With Me</a>
+            <a href={url('/services')} class="btn-secondary">View Services</a>
           </div>
         </div>
 

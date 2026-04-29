@@ -1,9 +1,11 @@
 ---
+import { url } from '../utils/url';
+
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: url('/'), label: 'Home' },
+  { href: url('/services'), label: 'Services' },
+  { href: url('/about'), label: 'About' },
+  { href: url('/contact'), label: 'Contact' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -13,7 +15,7 @@ const currentPath = Astro.url.pathname;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 text-white font-bold text-xl hover:text-brand-400 transition-colors">
+      <a href={url('/')} class="flex items-center gap-2 text-white font-bold text-xl hover:text-brand-400 transition-colors">
         <svg class="w-8 h-8 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -27,7 +29,7 @@ const currentPath = Astro.url.pathname;
           <a
             href={href}
             class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              currentPath === href || (href !== '/' && currentPath.startsWith(href))
+              currentPath === href || (href !== url('/') && currentPath.startsWith(href))
                 ? 'bg-brand-600/20 text-brand-400'
                 : 'text-gray-400 hover:text-white hover:bg-gray-800'
             }`}
@@ -35,7 +37,7 @@ const currentPath = Astro.url.pathname;
             {label}
           </a>
         ))}
-        <a href="/contact" class="ml-4 btn-primary text-sm py-2">
+        <a href={url('/contact')} class="ml-4 btn-primary text-sm py-2">
           Hire Me
         </a>
       </nav>
@@ -69,7 +71,7 @@ const currentPath = Astro.url.pathname;
         <a
           href={href}
           class={`block px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-            currentPath === href || (href !== '/' && currentPath.startsWith(href))
+            currentPath === href || (href !== url('/') && currentPath.startsWith(href))
               ? 'bg-brand-600/20 text-brand-400'
               : 'text-gray-400 hover:text-white hover:bg-gray-800'
           }`}
@@ -77,7 +79,7 @@ const currentPath = Astro.url.pathname;
           {label}
         </a>
       ))}
-      <a href="/contact" class="block mt-2 btn-primary text-sm py-2 text-center">
+      <a href={url('/contact')} class="block mt-2 btn-primary text-sm py-2 text-center">
         Hire Me
       </a>
     </div>
