@@ -6,8 +6,8 @@ import tailwind from '@astrojs/tailwind';
 const isProd = process.env.GITHUB_ACTIONS === 'true';
 
 export default defineConfig({
-  site: 'https://Chandu-kadiri.github.io',
-  base: isProd ? '/Freelance' : '/',
+  site: 'https://freelancerhub01.github.io',
+  base: isProd ? '/FreelanceServices' : '/',
   integrations: [tailwind()],
   output: 'static',
 });
