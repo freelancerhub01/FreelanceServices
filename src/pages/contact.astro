@@ -4,182 +4,298 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Contact"
-  description="Get in touch with FreelanceHub to discuss your project. Available for web development, DevOps, cloud, and more."
+  description="Get in touch with FreelanceHub to discuss your project. Available 24/7 for immediate response."
 >
-  <section class="py-20" aria-labelledby="contact-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative py-24 overflow-hidden" aria-labelledby="contact-heading">
+    <!-- Background -->
+    <div class="absolute inset-0 grid-bg opacity-20" aria-hidden="true"></div>
+    <div class="orb w-96 h-96 bg-brand-600/8 -top-20 -left-20 pointer-events-none" style="animation-duration:10s" aria-hidden="true"></div>
+    <div class="orb w-64 h-64 bg-purple-600/8 bottom-20 -right-10 pointer-events-none" style="animation-duration:8s;animation-delay:-4s" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
         <!-- Left: Info -->
-        <div class="fade-in">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-600/10 border border-brand-600/20 text-brand-400 text-sm font-medium mb-6">
+        <div class="fade-in-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-600/10 border border-brand-500/20 text-brand-400 text-sm font-medium mb-6">
+            <span class="glow-dot" aria-hidden="true"></span>
             Let's Talk
           </div>
-          <h1 id="contact-heading" class="text-4xl md:text-5xl font-bold text-white mb-6">
-            Start Your Project Today
+          <h1 id="contact-heading" class="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
+            Start Your Project
+            <span class="gradient-text"> Today</span>
           </h1>
           <p class="text-gray-400 text-lg leading-relaxed mb-10">
-            Have a project in mind? I'd love to hear about it. Fill out the form and I'll get back to you within 24 hours.
+            Have a project in mind? Fill out the form and I'll get back to you immediately.
           </p>
 
-          <div class="space-y-6">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-brand-600/20 flex items-center justify-center text-brand-400 shrink-0" aria-hidden="true">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+          <div class="space-y-4">
+            {[
+              {
+                icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>`,
+                label: 'Email',
+                value: 'venkat.cotech@gmail.com',
+                href: 'mailto:venkat.cotech@gmail.com',
+                color: 'from-brand-500 to-purple-600',
+                fill: false,
+              },
+              {
+                icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>`,
+                label: 'Response Time',
+                value: 'Available 24/7 — Immediate Response',
+                href: null,
+                color: 'from-green-500 to-cyan-500',
+                fill: false,
+              },
+              {
+                icon: `<path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>`,
+                label: 'GitHub',
+                value: 'github.com/freelancerhub01',
+                href: 'https://github.com/freelancerhub01',
+                color: 'from-gray-400 to-gray-600',
+                fill: true,
+              },
+              {
+                icon: `<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>`,
+                label: 'LinkedIn',
+                value: 'linkedin.com/in/[username]',
+                href: 'https://linkedin.com',
+                color: 'from-blue-500 to-cyan-500',
+                fill: true,
+              },
+            ].map(({ icon, label, value, href, color, fill }, i) => (
+              <div class="flex items-start gap-4 group fade-in" style={`transition-delay: ${i * 80}ms`}>
+                <div class={`w-11 h-11 rounded-xl bg-gradient-to-br ${color} p-0.5 shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                  <div class="w-full h-full rounded-xl bg-gray-900 flex items-center justify-center text-white">
+                    <svg class="w-5 h-5" fill={fill ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke={fill ? 'none' : 'currentColor'} aria-hidden="true">
+                      <Fragment set:html={icon} />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="text-gray-500 text-xs font-medium uppercase tracking-wider mb-0.5">{label}</div>
+                  {href ? (
+                    <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                       class="text-gray-300 hover:text-brand-400 transition-colors text-sm font-medium">
+                      {value}
+                    </a>
+                  ) : (
+                    <div class="text-green-400 text-sm font-medium flex items-center gap-2">
+                      <span class="glow-dot" aria-hidden="true"></span>
+                      {value}
+                    </div>
+                  )}
+                </div>
               </div>
-              <div>
-                <div class="text-white font-medium">Email</div>
-                <a href="mailto:venkat.cotech@gmail.com" class="text-gray-400 hover:text-brand-400 transition-colors">venkat.cotech@gmail.com</a>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-brand-600/20 flex items-center justify-center text-brand-400 shrink-0" aria-hidden="true">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <div class="text-white font-medium">Response Time</div>
-                <div class="text-gray-400">Available 24/7 - Immediate Response</div>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-brand-600/20 flex items-center justify-center text-brand-400 shrink-0" aria-hidden="true">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-                </svg>
-              </div>
-              <div>
-                <div class="text-white font-medium">GitHub</div>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-brand-400 transition-colors">github.com/[username]</a>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-brand-600/20 flex items-center justify-center text-brand-400 shrink-0" aria-hidden="true">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
-              </div>
-              <div>
-                <div class="text-white font-medium">LinkedIn</div>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-brand-400 transition-colors">linkedin.com/in/[username]</a>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
         <!-- Right: Form -->
-        <div class="fade-in">
-          <form
-            action="https://formspree.io/f/[YOUR_FORM_ID]"
-            method="POST"
-            class="card space-y-6"
-            aria-label="Contact form"
-            novalidate
-          >
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name <span class="text-red-400" aria-hidden="true">*</span></label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  autocomplete="name"
-                  placeholder="[Your Name]"
-                  class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
-                />
+        <div class="fade-in-right">
+          <div class="relative rounded-2xl overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-brand-500/20 via-purple-500/10 to-cyan-500/20 rounded-2xl" aria-hidden="true"></div>
+            <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-400/50 to-transparent" aria-hidden="true"></div>
+
+            <!-- Success state -->
+            <div id="form-success" class="hidden relative bg-gray-900/90 backdrop-blur-sm rounded-2xl p-12 border border-gray-800/50 text-center">
+              <div class="w-20 h-20 rounded-full bg-gradient-to-br from-green-500 to-cyan-500 p-0.5 mx-auto mb-6">
+                <div class="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
+                  <svg class="w-10 h-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
               </div>
-              <div>
-                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email <span class="text-red-400" aria-hidden="true">*</span></label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  autocomplete="email"
-                  placeholder="you@example.com"
-                  class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
-                />
-              </div>
+              <h3 class="text-2xl font-bold text-white mb-3">Message Sent!</h3>
+              <p class="text-gray-400 mb-2">Thanks for reaching out. I'll get back to you immediately.</p>
+              <p class="text-brand-400 text-sm font-medium" id="success-name"></p>
             </div>
 
-            <div>
-              <label for="service" class="block text-sm font-medium text-gray-300 mb-2">Service Needed</label>
-              <select
-                id="service"
-                name="service"
-                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
-              >
-                <option value="">Select a service...</option>
-                <option value="web-development">Web Development</option>
-                <option value="api-development">REST API Development</option>
-                <option value="backend-schedulers">Backend Scheduler Development</option>
-                <option value="cloud-services">Cloud Services</option>
-                <option value="app-upgrades">App Version Upgrades</option>
-                <option value="migrations">App & Data Migration</option>
-                <option value="devops">DevOps</option>
-                <option value="docker">Docker</option>
-                <option value="kubernetes">Kubernetes</option>
-                <option value="app-enhancements">App Enhancements</option>
-                <option value="new-features">Adding New Features</option>
-                <option value="other">Other / Not Sure</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="budget" class="block text-sm font-medium text-gray-300 mb-2">Budget Range</label>
-              <select
-                id="budget"
-                name="budget"
-                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"
-              >
-                <option value="">Select a range...</option>
-                <option value="under-1k">Under $1,000</option>
-                <option value="1k-5k">$1,000 – $5,000</option>
-                <option value="5k-15k">$5,000 – $15,000</option>
-                <option value="15k-plus">$15,000+</option>
-                <option value="ongoing">Ongoing / Retainer</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Project Details <span class="text-red-400" aria-hidden="true">*</span></label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows="5"
-                placeholder="Tell me about your project, goals, and timeline..."
-                class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors resize-none"
-              ></textarea>
-            </div>
-
-            <!-- Honeypot for spam prevention -->
-            <input type="text" name="_gotcha" class="hidden" aria-hidden="true" tabindex="-1" />
-
-            <button
-              type="submit"
-              class="btn-primary w-full justify-center py-3.5"
+            <!-- Form -->
+            <form
+              id="contact-form"
+              class="relative bg-gray-900/90 backdrop-blur-sm rounded-2xl p-8 space-y-5 border border-gray-800/50"
+              aria-label="Contact form"
+              novalidate
             >
-              Send Message
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
-            </button>
+              <!-- Name -->
+              <div>
+                <label for="name" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                  Name <span class="text-brand-400" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text" id="name" name="from_name" required autocomplete="name"
+                  placeholder="Your full name"
+                  class="w-full px-4 py-3 rounded-xl bg-gray-800/80 border border-gray-700/50 text-white placeholder-gray-600 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all duration-200 hover:border-gray-600"
+                />
+              </div>
 
-            <p class="text-xs text-gray-500 text-center">
-              Form powered by <a href="https://formspree.io" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline">Formspree</a>.
-              Replace <code class="bg-gray-800 px-1 rounded">[YOUR_FORM_ID]</code> in the form action with your Formspree endpoint.
-            </p>
-          </form>
+              <!-- Email -->
+              <div>
+                <label for="email" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                  Email <span class="text-brand-400" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email" id="email" name="from_email" required autocomplete="email"
+                  placeholder="you@example.com"
+                  class="w-full px-4 py-3 rounded-xl bg-gray-800/80 border border-gray-700/50 text-white placeholder-gray-600 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all duration-200 hover:border-gray-600"
+                />
+              </div>
+
+              <!-- Service -->
+              <div>
+                <label for="service" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                  Service Needed <span class="text-brand-400" aria-hidden="true">*</span>
+                </label>
+                <select id="service" name="service" required
+                  class="w-full px-4 py-3 rounded-xl bg-gray-800/80 border border-gray-700/50 text-white text-sm
+                         focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all duration-200">
+                  <option value="">Select a service...</option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="REST API Development">REST API Development</option>
+                  <option value="Backend Scheduler Development">Backend Scheduler Development</option>
+                  <option value="Cloud Services">Cloud Services</option>
+                  <option value="App Version Upgrades">App Version Upgrades</option>
+                  <option value="App & Data Migration">App &amp; Data Migration</option>
+                  <option value="DevOps">DevOps</option>
+                  <option value="Docker">Docker</option>
+                  <option value="Kubernetes">Kubernetes</option>
+                  <option value="App Enhancements">App Enhancements</option>
+                  <option value="Adding New Features">Adding New Features</option>
+                  <option value="Other / Not Sure">Other / Not Sure</option>
+                </select>
+              </div>
+
+              <!-- Project Details -->
+              <div>
+                <label for="message" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                  Project Details <span class="text-brand-400" aria-hidden="true">*</span>
+                </label>
+                <textarea id="message" name="message" required rows="5"
+                  placeholder="Tell me about your project, goals, and timeline..."
+                  class="w-full px-4 py-3 rounded-xl bg-gray-800/80 border border-gray-700/50 text-white placeholder-gray-600 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all duration-200 hover:border-gray-600 resize-none"
+                ></textarea>
+              </div>
+
+              <!-- Error message -->
+              <div id="form-error" class="hidden px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+                Something went wrong. Please try again or email directly at venkat.cotech@gmail.com
+              </div>
+
+              <!-- Submit -->
+              <button type="submit" id="submit-btn" class="btn-primary w-full justify-center py-4 text-base">
+                <span id="btn-text">Send Message</span>
+                <svg id="btn-icon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+                <!-- Spinner (hidden by default) -->
+                <svg id="btn-spinner" class="w-5 h-5 hidden animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 12 0 12 0v4a8 8 0 00-8 8H4z"></path>
+                </svg>
+              </button>
+
+              <p class="text-xs text-gray-600 text-center">
+                Powered by <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline">Web3Forms</a> — your details go directly to my inbox.
+              </p>
+            </form>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  // ── PASTE YOUR WEB3FORMS ACCESS KEY HERE ────────────────────────────────────
+  // Get it free at https://web3forms.com → enter venkat.cotech@gmail.com
+  const WEB3FORMS_KEY = '6fd4eed1-6579-487f-b785-4d8650b4dfb8';
+  // ────────────────────────────────────────────────────────────────────────────
+
+  const form       = document.getElementById('contact-form') as HTMLFormElement;
+  const successBox = document.getElementById('form-success') as HTMLElement;
+  const errorBox   = document.getElementById('form-error') as HTMLElement;
+  const submitBtn  = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnText    = document.getElementById('btn-text') as HTMLElement;
+  const btnIcon    = document.getElementById('btn-icon') as HTMLElement;
+  const btnSpinner = document.getElementById('btn-spinner') as HTMLElement;
+  const successName = document.getElementById('success-name') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.classList.add('hidden');
+
+    const name    = (form.querySelector('#name')    as HTMLInputElement).value.trim();
+    const email   = (form.querySelector('#email')   as HTMLInputElement).value.trim();
+    const service = (form.querySelector('#service') as HTMLSelectElement).value;
+    const message = (form.querySelector('#message') as HTMLTextAreaElement).value.trim();
+
+    // Validate
+    if (!name || !email || !service || !message) {
+      errorBox.textContent = 'Please fill in all required fields.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    // Loading state
+    submitBtn.disabled = true;
+    btnText.textContent = 'Sending...';
+    btnIcon.classList.add('hidden');
+    btnSpinner.classList.remove('hidden');
+
+    // Build a nicely formatted email body
+    const formattedMessage = `
+New Project Inquiry from FreelanceHub Portfolio
+================================================
+
+👤  Name    : ${name}
+📧  Email   : ${email}
+🛠  Service : ${service}
+
+📋  Project Details
+-------------------
+${message}
+
+================================================
+Reply directly to: ${email}
+    `.trim();
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key:   WEB3FORMS_KEY,
+          subject:      `New Project Inquiry — ${service} | from ${name}`,
+          from_name:    name,
+          email:        email,          // reply-to address
+          message:      formattedMessage,
+          botcheck:     '',             // honeypot
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        form.classList.add('hidden');
+        successBox.classList.remove('hidden');
+        successName.textContent = `We'll be in touch with you at ${email}`;
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
+
+    } catch (err) {
+      console.error('Web3Forms error:', err);
+      errorBox.textContent = 'Something went wrong. Please email venkat.cotech@gmail.com directly.';
+      errorBox.classList.remove('hidden');
+      submitBtn.disabled = false;
+      btnText.textContent = 'Send Message';
+      btnIcon.classList.remove('hidden');
+      btnSpinner.classList.add('hidden');
+    }
+  });
+</script>
