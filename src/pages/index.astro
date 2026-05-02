@@ -16,80 +16,109 @@ import { url } from '../utils/url';
     subtitle="Expert freelancing services across web development, cloud infrastructure, DevOps, and everything in between. Let's build something remarkable together."
   />
 
-  <!-- Services Overview -->
-  <section class="py-20" aria-labelledby="services-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 fade-in">
-        <h2 id="services-heading" class="section-title">What I Do</h2>
-        <p class="section-subtitle">
-          From frontend to infrastructure, I cover the full stack of modern software delivery.
-        </p>
+  <!-- ── Tech Marquee ── -->
+  <div class="py-10 overflow-hidden border-y" style="border-color:rgba(99,102,241,.1);background:rgba(99,102,241,.02)">
+    <div class="flex gap-6 marquee-track" aria-hidden="true">
+      {[...['React','Node.js','TypeScript','Docker','Kubernetes','AWS','Azure','GCP',
+            'Terraform','GitHub Actions','PostgreSQL','MongoDB','Redis','FastAPI','NestJS',
+            'Next.js','Astro','Tailwind CSS','Helm','ArgoCD','Grafana','Prometheus'],
+        ...['React','Node.js','TypeScript','Docker','Kubernetes','AWS','Azure','GCP',
+            'Terraform','GitHub Actions','PostgreSQL','MongoDB','Redis','FastAPI','NestJS']
+      ].map(tech => (
+        <div class="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl text-gray-500 text-sm font-medium whitespace-nowrap transition-colors duration-200 hover:text-gray-300"
+             style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-500/50" aria-hidden="true"></span>
+          {tech}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- ── Services ── -->
+  <section class="py-28 relative" aria-labelledby="services-heading">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="orb w-[500px] h-[500px] top-1/2 -left-40 opacity-10"
+           style="background:radial-gradient(circle,rgba(99,102,241,.8),transparent 70%);animation-duration:14s"></div>
+      <div class="orb w-[400px] h-[400px] top-1/3 -right-20 opacity-8"
+           style="background:radial-gradient(circle,rgba(168,85,247,.6),transparent 70%);animation-duration:11s;animation-delay:-5s"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="text-center mb-20 fade-in">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 text-sm font-semibold"
+             style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#a5b4fc">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          </svg>
+          What I Do
+        </div>
+        <h2 id="services-heading" class="text-4xl md:text-6xl font-black text-white mb-5 leading-tight">
+          Full-Stack <span class="gradient-text">Expertise</span>
+        </h2>
+        <p class="section-subtitle">From frontend pixels to cloud infrastructure — complete software delivery.</p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((service) => (
-          <div class="fade-in">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {services.map((service, i) => (
+          <div class="fade-in" style={`transition-delay:${(i % 6) * 70}ms`}>
             <ServiceCard
               title={service.title}
               description={service.shortDescription}
               icon={service.icon}
               href={url(`/services/${service.slug}`)}
               tags={service.tags.slice(0, 3)}
+              index={i}
             />
           </div>
         ))}
       </div>
 
-      <div class="text-center mt-10 fade-in">
-        <a href={url('/services')} class="btn-secondary">
-          View All Services
+      <div class="text-center mt-14 fade-in">
+        <a href={url('/services')} class="btn-secondary text-base px-10 py-4">
+          Explore All Services
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
           </svg>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Why Choose Us -->
-  <section class="py-20 bg-gray-900/50" aria-labelledby="why-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 fade-in">
-        <h2 id="why-heading" class="section-title">Why Work With Me</h2>
-        <p class="section-subtitle">
-          I bring more than just code — I bring reliability, communication, and a commitment to your success.
-        </p>
+  <!-- ── Why Me ── -->
+  <section class="py-28 relative overflow-hidden" aria-labelledby="why-heading">
+    <div class="absolute inset-0 grid-bg opacity-20" aria-hidden="true"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,transparent,rgba(99,102,241,.03),transparent)" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="text-center mb-20 fade-in">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 text-sm font-semibold"
+             style="background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);color:#d8b4fe">
+          Why Work With Me
+        </div>
+        <h2 id="why-heading" class="text-4xl md:text-6xl font-black text-white mb-5 leading-tight">
+          More Than Just <span class="gradient-text">Code</span>
+        </h2>
+        <p class="section-subtitle">Reliability, communication, and a commitment to your success — every project.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {[
-          {
-            icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
-            title: 'Production-Ready Code',
-            desc: 'Every deliverable is tested, documented, and built to last — not just to demo.',
-          },
-          {
-            icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>`,
-            title: 'Clear Communication',
-            desc: 'Regular updates, transparent timelines, and no surprises. You\'re always in the loop.',
-          },
-          {
-            icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
-            title: 'Fast Turnaround',
-            desc: 'Efficient workflows and focused execution mean your project ships on time.',
-          },
-          {
-            icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>`,
-            title: 'Full-Stack Expertise',
-            desc: 'From UI to infrastructure, I handle the entire stack so you don\'t need multiple vendors.',
-          },
-        ].map(({ icon, title, desc }) => (
-          <div class="card text-center fade-in">
-            <div class="w-14 h-14 rounded-xl bg-brand-600/20 flex items-center justify-center text-brand-400 mx-auto mb-4" aria-hidden="true">
-              <Fragment set:html={icon} />
+          { icon:`<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`, title:'Production-Ready', desc:'Tested, documented, built to last — not just to demo.', from:'#6366f1', to:'#a855f7', delay:0 },
+          { icon:`<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>`, title:'Clear Communication', desc:'Regular updates, transparent timelines, no surprises.', from:'#06b6d4', to:'#6366f1', delay:100 },
+          { icon:`<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`, title:'Fast Turnaround', desc:'Efficient workflows mean your project ships on time.', from:'#f59e0b', to:'#ec4899', delay:200 },
+          { icon:`<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>`, title:'Full-Stack', desc:'UI to infrastructure — one vendor, zero gaps.', from:'#10b981', to:'#06b6d4', delay:300 },
+        ].map(({ icon, title, desc, from, to, delay }) => (
+          <div class="fade-in spotlight group" style={`transition-delay:${delay}ms`}>
+            <div class="card h-full text-center relative overflow-hidden">
+              <div class="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                   style={`background:linear-gradient(90deg,transparent,${from},${to},transparent)`} aria-hidden="true"></div>
+              <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                   style={`background:linear-gradient(135deg,${from}22,${to}11);border:1px solid ${from}33`}>
+                <div style={`color:${from}`}><Fragment set:html={icon} /></div>
+              </div>
+              <h3 class="text-white font-bold mb-2 text-lg">{title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed group-hover:text-gray-400 transition-colors">{desc}</p>
             </div>
-            <h3 class="text-white font-semibold mb-2">{title}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">{desc}</p>
           </div>
         ))}
       </div>
@@ -98,3 +127,15 @@ import { url } from '../utils/url';
 
   <CTASection />
 </BaseLayout>
+
+<style>
+  .marquee-track {
+    animation: marquee 35s linear infinite;
+    width: max-content;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+</style>

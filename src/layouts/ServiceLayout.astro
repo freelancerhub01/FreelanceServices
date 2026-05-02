@@ -9,28 +9,42 @@ interface Props {
 }
 
 const { service } = Astro.props;
+
+const gradients = [
+  'from-brand-500 to-purple-600',
+  'from-cyan-500 to-brand-500',
+  'from-purple-500 to-pink-500',
+  'from-green-500 to-cyan-500',
+];
 ---
 
-<BaseLayout
-  title={service.title}
-  description={service.description}
->
+<BaseLayout title={service.title} description={service.description}>
+
   <!-- Hero -->
-  <section class="py-20" aria-labelledby="service-heading">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative py-20 overflow-hidden" aria-labelledby="service-heading">
+    <div class="absolute inset-0 grid-bg opacity-20" aria-hidden="true"></div>
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-500/30 to-transparent" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="max-w-3xl fade-in">
-        <a href={url('/services')} class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-brand-400 transition-colors mb-6">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
+        <a href={url('/services')} class="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-brand-400 transition-colors mb-8 group">
+          <div class="w-7 h-7 rounded-lg bg-gray-800 group-hover:bg-brand-600/20 flex items-center justify-center transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </div>
           All Services
         </a>
 
-        <div class="flex items-center gap-4 mb-6">
-          <div class="w-14 h-14 rounded-xl bg-brand-600/20 flex items-center justify-center text-brand-400 shrink-0" aria-hidden="true">
-            <Fragment set:html={service.icon} />
+        <div class="flex items-center gap-5 mb-6">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-600 p-0.5 shrink-0 animate-float" style="animation-duration:5s">
+            <div class="w-full h-full rounded-2xl bg-gray-900 flex items-center justify-center text-white">
+              <Fragment set:html={service.icon} />
+            </div>
           </div>
-          <h1 id="service-heading" class="text-4xl md:text-5xl font-bold text-white">{service.title}</h1>
+          <h1 id="service-heading" class="text-4xl md:text-5xl font-black text-white leading-tight">
+            {service.title}
+          </h1>
         </div>
 
         <p class="text-xl text-gray-400 leading-relaxed mb-6">{service.description}</p>
@@ -44,27 +58,33 @@ const { service } = Astro.props;
     </div>
   </section>
 
-  <!-- Content Grid -->
-  <section class="pb-20" aria-label="Service details">
+  <!-- Content -->
+  <section class="pb-24" aria-label="Service details">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        <!-- Features -->
-        <div class="lg:col-span-2 space-y-8">
+        <!-- Main content -->
+        <div class="lg:col-span-2 space-y-6">
+
+          <!-- Features -->
           <div class="card fade-in">
-            <h2 class="text-xl font-semibold text-white mb-5 flex items-center gap-2">
-              <svg class="w-5 h-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+            <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-brand-600/20 flex items-center justify-center">
+                <svg class="w-4 h-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
               What's Included
             </h2>
             <ul class="space-y-3" role="list">
-              {service.features.map((feature) => (
-                <li class="flex items-start gap-3 text-gray-300">
-                  <svg class="w-5 h-5 text-brand-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {feature}
+              {service.features.map((feature, i) => (
+                <li class="flex items-start gap-3 text-gray-300 group/item fade-in" style={`transition-delay: ${i * 60}ms`}>
+                  <div class="w-5 h-5 rounded-full bg-brand-600/20 border border-brand-500/30 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-brand-600/40 transition-colors">
+                    <svg class="w-3 h-3 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="text-sm leading-relaxed group-hover/item:text-white transition-colors">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -72,18 +92,18 @@ const { service } = Astro.props;
 
           <!-- Use Cases -->
           <div class="card fade-in">
-            <h2 class="text-xl font-semibold text-white mb-5 flex items-center gap-2">
-              <svg class="w-5 h-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-              </svg>
+            <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-purple-600/20 flex items-center justify-center">
+                <svg class="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
               Common Use Cases
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {service.useCases.map((useCase) => (
-                <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-800/50 text-gray-300 text-sm">
-                  <svg class="w-4 h-4 text-brand-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+              {service.useCases.map((useCase, i) => (
+                <div class="flex items-center gap-3 p-3.5 rounded-xl bg-gray-800/50 border border-gray-700/50 text-gray-300 text-sm hover:border-brand-500/30 hover:bg-gray-800 transition-all duration-200 fade-in" style={`transition-delay: ${i * 60}ms`}>
+                  <div class="w-1.5 h-1.5 rounded-full bg-brand-400 shrink-0" aria-hidden="true"></div>
                   {useCase}
                 </div>
               ))}
@@ -91,23 +111,42 @@ const { service } = Astro.props;
           </div>
         </div>
 
-        <!-- Sidebar: Tools & CTA -->
-        <div class="space-y-6">
+        <!-- Sidebar -->
+        <div class="space-y-5">
+          <!-- Tools -->
           <div class="card fade-in">
-            <h2 class="text-lg font-semibold text-white mb-4">Tools & Technologies</h2>
+            <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Tools & Technologies
+            </h2>
             <div class="flex flex-wrap gap-2">
               {service.tools.map((tool) => (
-                <span class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-300 text-sm border border-gray-700">{tool}</span>
+                <span class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-300 text-xs border border-gray-700/50 hover:border-brand-500/40 hover:text-brand-300 transition-all duration-200 cursor-default font-mono">
+                  {tool}
+                </span>
               ))}
             </div>
           </div>
 
-          <div class="card bg-gradient-to-br from-brand-600/20 to-indigo-900/20 border-brand-600/30 fade-in">
-            <h2 class="text-lg font-semibold text-white mb-2">Ready to get started?</h2>
-            <p class="text-gray-400 text-sm mb-5">Let's discuss your project requirements and find the best approach.</p>
-            <a href={url('/contact')} class="btn-primary w-full justify-center text-sm">
-              Get a Free Quote
-            </a>
+          <!-- CTA card -->
+          <div class="relative rounded-2xl overflow-hidden p-6 fade-in">
+            <div class="absolute inset-0 bg-gradient-to-br from-brand-900/80 to-purple-900/60" aria-hidden="true"></div>
+            <div class="absolute inset-0 grid-bg opacity-20" aria-hidden="true"></div>
+            <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-400/50 to-transparent" aria-hidden="true"></div>
+            <div class="relative z-10">
+              <div class="w-10 h-10 rounded-xl bg-brand-600/30 flex items-center justify-center mb-4">
+                <svg class="w-5 h-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h2 class="text-base font-bold text-white mb-2">Ready to get started?</h2>
+              <p class="text-gray-400 text-sm mb-5 leading-relaxed">Let's discuss your project and find the best approach.</p>
+              <a href={url('/contact')} class="btn-primary w-full justify-center text-sm py-3">
+                Get a Free Quote
+              </a>
+            </div>
           </div>
         </div>
       </div>

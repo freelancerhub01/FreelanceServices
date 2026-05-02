@@ -6,7 +6,6 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
-  ogImage?: string;
 }
 
 const {
@@ -14,11 +13,7 @@ const {
   description = 'FreelanceHub — Professional freelancing services including web development, DevOps, cloud, Docker, Kubernetes, and more.',
 } = Astro.props;
 
-const canonicalURL = Astro.site
-  ? new URL(Astro.url.pathname, Astro.site)
-  : Astro.url;
-
-// BASE_URL is '/' locally and '/Freelance/' on GitHub Pages
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
@@ -29,21 +24,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
-
-    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
-
     <title>{title} | FreelanceHub</title>
   </head>
   <body>
@@ -54,19 +43,108 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <Footer />
 
     <script>
-      // Scroll animation observer
-      const observer = new IntersectionObserver(
+      // ── Scroll reveal observer ──────────────────────────────────────────────
+      const revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.1 }
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
       );
 
-      document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+      document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in')
+        .forEach(el => revealObserver.observe(el));
+
+      // ── Animated number counters ───────────────────────────────────────────
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.count || '0');
+          const suffix = el.dataset.suffix || '';
+          const duration = 1800;
+          const steps = 60;
+          const increment = target / steps;
+          let current = 0;
+          let step = 0;
+          const timer = setInterval(() => {
+            step++;
+            current = Math.min(Math.round(increment * step), target);
+            el.textContent = current + suffix;
+            if (step >= steps) clearInterval(timer);
+          }, duration / steps);
+          counterObserver.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+      // ── Spotlight on all spotlight elements ───────────────────────────────
+      document.querySelectorAll('.spotlight').forEach(el => {
+        el.addEventListener('mousemove', (e: Event) => {
+          const me = e as MouseEvent;
+          const rect = (el as HTMLElement).getBoundingClientRect();
+          (el as HTMLElement).style.setProperty('--x', `${me.clientX - rect.left}px`);
+          (el as HTMLElement).style.setProperty('--y', `${me.clientY - rect.top}px`);
+        });
+      });
+
+      // ── Ripple on all ripple buttons ──────────────────────────────────────
+      document.querySelectorAll('.ripple-btn').forEach(btn => {
+        btn.addEventListener('click', (e: Event) => {
+          const me = e as MouseEvent;
+          const rect = (btn as HTMLElement).getBoundingClientRect();
+          const circle = document.createElement('span');
+          const size = Math.max(rect.width, rect.height);
+          circle.className = 'ripple-circle';
+          circle.style.cssText = `width:${size}px;height:${size}px;left:${me.clientX-rect.left-size/2}px;top:${me.clientY-rect.top-size/2}px`;
+          btn.appendChild(circle);
+          setTimeout(() => circle.remove(), 700);
+        });
+      });
+
+      // ── Typing animation for elements with data-type ──────────────────────
+      document.querySelectorAll('[data-type]').forEach(el => {
+        const words = (el as HTMLElement).dataset.type?.split(',') || [];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        el.appendChild(cursor);
+
+        function type() {
+          const word = words[wordIndex % words.length];
+          if (deleting) {
+            el.childNodes[0].textContent = word.substring(0, charIndex--);
+          } else {
+            el.childNodes[0].textContent = word.substring(0, charIndex++);
+          }
+          if (!deleting && charIndex > word.length) {
+            deleting = true;
+            setTimeout(type, 1800);
+            return;
+          }
+          if (deleting && charIndex < 0) {
+            deleting = false;
+            wordIndex++;
+            setTimeout(type, 400);
+            return;
+          }
+          setTimeout(type, deleting ? 60 : 100);
+        }
+
+        if (words.length > 0) {
+          const textNode = document.createTextNode('');
+          el.insertBefore(textNode, cursor);
+          type();
+        }
+      });
     </script>
   </body>
 </html>

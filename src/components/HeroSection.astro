@@ -11,57 +11,142 @@ interface Props {
 const {
   tagline,
   subtitle,
-  primaryCTA = { label: 'View Services', href: url('/services') },
-  secondaryCTA = { label: 'Get In Touch', href: url('/contact') },
+  primaryCTA  = { label: 'View Services', href: url('/services') },
+  secondaryCTA = { label: 'Get In Touch',  href: url('/contact') },
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden py-24 md:py-36" aria-labelledby="hero-heading">
-  <!-- Background gradient -->
-  <div class="absolute inset-0 -z-10" aria-hidden="true">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-600/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-900/20 rounded-full blur-3xl"></div>
+<section class="relative min-h-screen flex items-center overflow-hidden" aria-labelledby="hero-heading">
+
+  <!-- ── Animated grid ── -->
+  <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
+
+  <!-- ── Morphing blobs ── -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute w-[700px] h-[700px] -top-40 -left-40 rounded-full opacity-20 animate-morph"
+         style="background:radial-gradient(circle,rgba(99,102,241,.6),rgba(168,85,247,.3),transparent 70%)"></div>
+    <div class="absolute w-[500px] h-[500px] -bottom-20 -right-20 rounded-full opacity-15 animate-morph"
+         style="background:radial-gradient(circle,rgba(6,182,212,.5),rgba(99,102,241,.3),transparent 70%);animation-delay:-4s"></div>
+    <div class="absolute w-[300px] h-[300px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-10 animate-morph"
+         style="background:radial-gradient(circle,rgba(168,85,247,.6),transparent 70%);animation-delay:-2s"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-600/10 border border-brand-600/20 text-brand-400 text-sm font-medium mb-6 fade-in">
-      <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse" aria-hidden="true"></span>
-      Available for new projects
+  <!-- ── Floating particles ── -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true" id="hero-particles">
+    {Array.from({length:30}).map((_,i) => (
+      <div class="particle"
+        style={`
+          width:${2+Math.random()*5}px;
+          height:${2+Math.random()*5}px;
+          left:${Math.random()*100}%;
+          top:${20+Math.random()*80}%;
+          background:${['#6366f1','#a855f7','#06b6d4','#818cf8','#34d399'][i%5]};
+          opacity:${.2+Math.random()*.5};
+          --dur:${5+Math.random()*10}s;
+          --delay:-${Math.random()*10}s;
+        `}
+      />
+    ))}
+  </div>
+
+  <!-- ── Scan line ── -->
+  <div class="absolute top-0 left-0 right-0 neon-line" aria-hidden="true"></div>
+
+  <!-- ── Content ── -->
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full py-32">
+
+    <!-- Status badge -->
+    <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass mb-10 fade-in" style="border:1px solid rgba(99,102,241,.2)">
+      <span class="glow-dot" aria-hidden="true"></span>
+      <span class="text-gray-300 text-sm font-medium">Available for new projects</span>
+      <span class="px-2.5 py-0.5 rounded-full text-xs font-bold text-emerald-400 border border-emerald-500/30"
+            style="background:rgba(52,211,153,.08)">OPEN</span>
     </div>
 
-    <h1 id="hero-heading" class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 fade-in">
-      {tagline}
-    </h1>
+    <!-- Headline -->
+    <div class="mb-6 fade-in delay-100">
+      <h1 id="hero-heading" class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.02] tracking-tight">
+        <span class="block text-white mb-2">Building Digital</span>
+        <span class="block gradient-text pb-2">Solutions That Scale</span>
+      </h1>
+    </div>
 
-    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 fade-in">
+    <!-- Animated tech pills -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-8 fade-in delay-200">
+      {['React','Node.js','Docker','Kubernetes','AWS','TypeScript','DevOps','Terraform'].map((t,i) => (
+        <span class="tag font-mono" style={`animation-delay:${i*80}ms`}>{t}</span>
+      ))}
+    </div>
+
+    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed fade-in delay-300">
       {subtitle}
     </p>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in">
-      <a href={primaryCTA.href} class="btn-primary text-base px-8 py-3.5 w-full sm:w-auto">
-        {primaryCTA.label}
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24 fade-in delay-400">
+      <a href={primaryCTA.href} class="btn-primary ripple-btn text-lg px-10 py-4 w-full sm:w-auto">
+        <span>{primaryCTA.label}</span>
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
         </svg>
       </a>
-      <a href={secondaryCTA.href} class="btn-secondary text-base px-8 py-3.5 w-full sm:w-auto">
+      <a href={secondaryCTA.href} class="btn-secondary text-lg px-10 py-4 w-full sm:w-auto">
         {secondaryCTA.label}
       </a>
     </div>
 
     <!-- Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 fade-in">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto fade-in delay-500">
       {[
-        { value: '5+', label: 'Years Experience' },
-        { value: '80+', label: 'Projects Delivered' },
-        { value: '11', label: 'Service Areas' },
-        { value: '100%', label: 'Client Satisfaction' },
-      ].map(({ value, label }) => (
-        <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-brand-400">{value}</div>
-          <div class="text-sm text-gray-500 mt-1">{label}</div>
+        { value:'5+',   label:'Years Experience',    color:'from-brand-400 to-purple-400',  glow:'rgba(99,102,241,.4)' },
+        { value:'6',    label:'Projects Delivered',  color:'from-cyan-400 to-brand-400',    glow:'rgba(6,182,212,.4)' },
+        { value:'4',    label:'Service Areas',       color:'from-purple-400 to-pink-400',   glow:'rgba(168,85,247,.4)' },
+        { value:'100%', label:'Client Satisfaction', color:'from-emerald-400 to-cyan-400',  glow:'rgba(52,211,153,.4)' },
+      ].map(({value,label,color,glow},i) => (
+        <div class="glow-card group cursor-default" style={`transition-delay:${i*80}ms`}>
+          <div class="glow-card-inner p-5 text-center">
+            <div class={`text-4xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r ${color} mb-1.5 group-hover:scale-110 transition-transform duration-300`}
+                 style={`filter:drop-shadow(0 0 12px ${glow})`}>
+              {value}
+            </div>
+            <div class="text-xs text-gray-500 font-medium uppercase tracking-wider">{label}</div>
+          </div>
         </div>
       ))}
     </div>
   </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 fade-in delay-700" aria-hidden="true">
+    <span class="text-xs text-gray-600 uppercase tracking-[.2em]">Scroll</span>
+    <div class="w-5 h-9 rounded-full border border-gray-700 flex items-start justify-center p-1">
+      <div class="w-1 h-2 rounded-full bg-brand-400" style="animation:float 1.5s ease-in-out infinite"></div>
+    </div>
+  </div>
 </section>
+
+<script>
+  // Ripple effect on primary button
+  document.querySelectorAll('.ripple-btn').forEach(btn => {
+    btn.addEventListener('click', (e: Event) => {
+      const me = e as MouseEvent;
+      const rect = (btn as HTMLElement).getBoundingClientRect();
+      const circle = document.createElement('span');
+      const size = Math.max(rect.width, rect.height);
+      circle.className = 'ripple-circle';
+      circle.style.cssText = `width:${size}px;height:${size}px;left:${me.clientX-rect.left-size/2}px;top:${me.clientY-rect.top-size/2}px`;
+      btn.appendChild(circle);
+      setTimeout(() => circle.remove(), 700);
+    });
+  });
+
+  // Spotlight effect on cards
+  document.querySelectorAll('.spotlight').forEach(el => {
+    el.addEventListener('mousemove', (e: Event) => {
+      const me = e as MouseEvent;
+      const rect = (el as HTMLElement).getBoundingClientRect();
+      (el as HTMLElement).style.setProperty('--x', `${me.clientX - rect.left}px`);
+      (el as HTMLElement).style.setProperty('--y', `${me.clientY - rect.top}px`);
+    });
+  });
+</script>

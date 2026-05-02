@@ -2,89 +2,137 @@
 import { url } from '../utils/url';
 
 const services = [
-  { href: url('/services/web-development'), label: 'Web Development' },
-  { href: url('/services/api-development'), label: 'REST API Development' },
-  { href: url('/services/devops'), label: 'DevOps' },
-  { href: url('/services/docker'), label: 'Docker' },
-  { href: url('/services/kubernetes'), label: 'Kubernetes' },
-  { href: url('/services/cloud-services'), label: 'Cloud Services' },
+  { href: url('/services/web-development'),    label: 'Web Development' },
+  { href: url('/services/api-development'),    label: 'REST API Development' },
+  { href: url('/services/devops'),             label: 'DevOps' },
+  { href: url('/services/docker'),             label: 'Docker' },
+  { href: url('/services/kubernetes'),         label: 'Kubernetes' },
+  { href: url('/services/cloud-services'),     label: 'Cloud Services' },
+  { href: url('/services/migrations'),         label: 'App Migration' },
+  { href: url('/services/app-enhancements'),   label: 'App Enhancements' },
 ];
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-900 border-t border-gray-800 mt-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<footer class="relative mt-20 overflow-hidden">
+  <!-- Top gradient border -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" aria-hidden="true"></div>
+
+  <!-- Background -->
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <div class="absolute inset-0 bg-gray-950/95"></div>
+    <div class="absolute inset-0 grid-bg opacity-20"></div>
+    <div class="orb w-96 h-96 bg-brand-600/5 -bottom-20 -left-20" style="animation-duration:12s"></div>
+    <div class="orb w-64 h-64 bg-purple-600/5 top-10 right-10" style="animation-duration:9s;animation-delay:-4s"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
       <!-- Brand -->
-      <div>
-        <a href={url('/')} class="flex items-center gap-2 text-white font-bold text-xl mb-4">
-          <svg class="w-7 h-7 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-          </svg>
-          FreelanceHub
+      <div class="md:col-span-1">
+        <a href={url('/')} class="flex items-center gap-2.5 mb-5 group w-fit">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center shadow-neon-brand group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <span class="font-bold text-lg text-white">
+            Freelance<span class="gradient-text">Hub</span>
+          </span>
         </a>
-        <p class="text-gray-400 text-sm leading-relaxed">
+        <p class="text-gray-500 text-sm leading-relaxed mb-6">
           Building digital solutions that scale. Professional freelancing services for modern businesses.
         </p>
-        <div class="flex gap-4 mt-5">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-gray-500 hover:text-white transition-colors">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-            </svg>
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-gray-500 hover:text-white transition-colors">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-          </a>
-          <a href="mailto:venkat.cotech@gmail.com" aria-label="Email" class="text-gray-500 hover:text-white transition-colors">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </a>
+        <!-- Social links -->
+        <div class="flex gap-3">
+          {[
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/in/venkat-cotech-0794b8407/',
+              icon: `<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>`,
+              fill: true,
+            },
+            {
+              label: 'Email',
+              href: 'mailto:venkat.cotech@gmail.com',
+              icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>`,
+              fill: false,
+            },
+          ].map(({ label, href, icon, fill }) => (
+            <a
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              aria-label={label}
+              class="w-9 h-9 rounded-xl bg-gray-800/80 border border-gray-700/50 flex items-center justify-center text-gray-500 hover:text-white hover:border-brand-500/50 hover:bg-brand-600/10 transition-all duration-300 hover:scale-110 hover:shadow-glow-sm"
+            >
+              <svg class="w-4 h-4" fill={fill ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke={fill ? 'none' : 'currentColor'} aria-hidden="true">
+                <Fragment set:html={icon} />
+              </svg>
+            </a>
+          ))}
         </div>
       </div>
 
       <!-- Services -->
-      <div>
-        <h3 class="text-white font-semibold mb-4">Services</h3>
-        <ul class="space-y-2">
+      <div class="md:col-span-2">
+        <h3 class="text-white font-semibold mb-5 text-sm uppercase tracking-wider">Services</h3>
+        <div class="grid grid-cols-2 gap-2">
           {services.map(({ href, label }) => (
-            <li>
-              <a href={href} class="text-gray-400 hover:text-brand-400 text-sm transition-colors">{label}</a>
-            </li>
+            <a href={href} class="flex items-center gap-2 text-gray-500 hover:text-brand-400 text-sm transition-all duration-200 group py-1">
+              <svg class="w-3 h-3 text-brand-600/50 group-hover:text-brand-400 transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              {label}
+            </a>
           ))}
-        </ul>
+        </div>
       </div>
 
       <!-- Contact -->
       <div>
-        <h3 class="text-white font-semibold mb-4">Get In Touch</h3>
-        <ul class="space-y-3 text-sm text-gray-400">
-          <li class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <a href="mailto:venkat.cotech@gmail.com" class="hover:text-brand-400 transition-colors">venkat.cotech@gmail.com</a>
+        <h3 class="text-white font-semibold mb-5 text-sm uppercase tracking-wider">Get In Touch</h3>
+        <ul class="space-y-4 text-sm">
+          <li>
+            <a href="mailto:venkat.cotech@gmail.com" class="flex items-start gap-3 text-gray-500 hover:text-brand-400 transition-colors group">
+              <div class="w-8 h-8 rounded-lg bg-brand-600/10 border border-brand-500/20 flex items-center justify-center shrink-0 group-hover:bg-brand-600/20 transition-colors">
+                <svg class="w-4 h-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-gray-400 text-xs mb-0.5">Email</div>
+                venkat.cotech@gmail.com
+              </div>
+            </a>
           </li>
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>Available 24/7 - Immediate Response</span>
+          <li class="flex items-start gap-3 text-gray-500">
+            <div class="w-8 h-8 rounded-lg bg-green-600/10 border border-green-500/20 flex items-center justify-center shrink-0">
+              <span class="glow-dot w-2 h-2" aria-hidden="true"></span>
+            </div>
+            <div>
+              <div class="text-gray-400 text-xs mb-0.5">Availability</div>
+              <span class="text-green-400">Available 24/7 — Immediate Response</span>
+            </div>
           </li>
         </ul>
-        <a href={url('/contact')} class="btn-primary mt-5 text-sm py-2">
+        <a href={url('/contact')} class="btn-primary mt-6 text-sm py-2.5 px-5 w-full justify-center">
           Start a Project
         </a>
       </div>
     </div>
 
-    <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+    <!-- Bottom bar -->
+    <div class="border-t border-gray-800/50 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
       <p>&copy; {year} FreelanceHub. All rights reserved.</p>
-      <p>Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline">Astro</a> &amp; <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline">Tailwind CSS</a></p>
+      <div class="flex items-center gap-1">
+        <span>Built with</span>
+        <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-brand-300 transition-colors mx-1">Astro</a>
+        <span>&</span>
+        <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-brand-300 transition-colors mx-1">Tailwind CSS</a>
+      </div>
     </div>
   </div>
 </footer>
